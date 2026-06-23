@@ -7,7 +7,7 @@ Projeto desenvolvido para o Museu da Imaginação, utilizando um totem touchscre
 O Cabo de Guerra Matemático é um jogo multiplayer local onde dois jogadores resolvem contas matemáticas em seus respectivos dispositivos.
 
 Cada acerto puxa a corda para o lado do jogador que respondeu corretamente.
-z
+
 O objetivo é puxar a corda completamente para o seu lado antes do adversário.
 
 🎯 Objetivo Educacional

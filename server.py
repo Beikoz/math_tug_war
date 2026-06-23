@@ -16,7 +16,7 @@ estado = {
 
     "player1Timeout": False,
     "player2Timeout": False,
-z
+
     "equacao1": "",
     "equacao2": "",
 

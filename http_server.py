@@ -5,7 +5,7 @@ class RouteHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         parsed = urlparse(self.path)
         path = parsed.path.rstrip('/')
-z
+
         if path == '':
             self.path = '/main.html'
         elif path == '/jogoprincipal':

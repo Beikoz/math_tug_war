@@ -16,7 +16,7 @@ echo Encerrando processos anteriores...
 for /f "tokens=2" %%p in ('tasklist /fi "imagename eq python.exe" /fo list ^| findstr /i "PID"') do (
     taskkill /PID %%p /F >nul 2>&1
 )
-z
+
 echo.
 echo ====================================
 echo Servidor iniciado

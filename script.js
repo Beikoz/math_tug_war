@@ -9,7 +9,7 @@ function getServerHost() {
     }
     return host || 'localhost';
 }
-z
+
 const WS_HOST = getServerHost();
 const socket = new WebSocket("ws://" + WS_HOST + ":8001");
 
