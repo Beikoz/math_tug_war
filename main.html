@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabo de Guerra Matemático</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TELA DE ESPERA -->
+    <div id="tela-espera">
+
+        <div class="card">
+
+            <div class="player" id="player1">
+                JOGADOR 1 - AGUARDANDO
+            </div>
+
+            <div class="player2" id="player2">
+                JOGADOR 2 - AGUARDANDO
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- TELA TUTORIAL -->
+    <div id="tela-tutorial" class="hidden">
+
+        <div class="tutorial-card">
+
+            <h1>COMO JOGAR</h1>
+
+            <div class="regras">
+                <p>1 - SERÁ EXIBIDA UMA EQUAÇÃO AO SEU LADO.</p>
+                <p>2 - RESOLVA A EQUAÇÃO PARA PUXAR A CORDA.</p>
+                <p>3 - O JOGADOR COM MAIOR PONTUAÇÃO VENCE O JOGO!</p>
+            </div>
+
+            <img
+                src="assets/tug.png"
+                alt="Cabo de Guerra"
+                class="rope-image"
+            >
+
+        </div>
+
+    </div>
+
+    <!-- TELA DO JOGO -->
+    <div id="tela-jogo" class="hidden">
+
+        <div class="game-container">
+
+            <div class="player-side left">
+
+                <div id="score1" class="score">
+                    JOGADOR 1 - 0
+                </div>
+
+                <div id="equacao1" class="equacao">
+                    7 × 8
+                </div>
+
+                <div id="resposta1" class="resultado">
+                    56
+                </div>
+
+            </div>
+
+            <div class="arena">
+
+                <div id="game-timer" class="game-timer">03:00</div>
+
+                <img
+                    src="assets/fundo_padrao.png"
+                    class="arena-bg"
+                >
+
+                <img
+                    src="assets/corda.png"
+                    id="rope"
+                    class="rope"
+                >
+
+            </div>
+
+            <div class="player-side right">
+
+                <div id="score2" class="score">
+                    JOGADOR 2 - 0
+                </div>
+
+                <div id="equacao2" class="equacao">
+                    15 + 9
+                </div>
+
+                <div id="resposta2" class="resultado">
+                    24
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- POPUP VITÓRIA -->
+    <div id="popup-vitoria" class="hidden">
+        <div class="popup-card">
+            <h1 id="titulo-vitoria">VITÓRIA DA EQUIPE 1</h1>
+            <h2>PONTUAÇÃO TOTAL</h2>
+            <div class="placar-final">
+                <div>
+                    <h3>EQUIPE 1</h3>
+                    <span id="final1">0 PONTOS</span>
+                </div>
+                <div>
+                    <h3>EQUIPE 2</h3>
+                    <span id="final2">0 PONTOS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGO -->
+    <img
+        src="assets/Logo_MuseudaImaginacao_minimalista_fundo_branco.png"
+        alt="Museu da Imaginação"
+        class="logo"
+    >
+
+    <script src="script.js"></script>
+
+</body>
+</html>

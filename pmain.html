@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabo de Guerra</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="pstyle.css">
+</head>
+<body>
+    <div class="game-container">
+        <header id="main-header">
+            <h1 class="title">CABO DE GUERRA</h1>
+            <h2 class="subtitle1">MATEMÁTICO</h2>
+            <h3 class="subtitle2" id="team-name">
+                &bull; CARREGANDO...</h3>
+        </header>
+        
+        <main id="screen-mode">
+            <img src="assets/Gemini_Generated_Image_1z98hl1z98hl1z98-removebg-preview.png" alt="Luvas de Boxe" class="gloves-gif">
+            <p class="instruction">PREPARE-SE!</p>
+            
+            <div class="mode-buttons-wrapper">         
+                <button class="mode-btn-img solo-btn" id="btn-solo">
+                    <!-- A imagem será definida via CSS ou injetada via JS dependendo da equipe -->
+                </button>
+                <button class="mode-btn-img versus-btn" id="btn-versus">
+                    <!-- A imagem será definida via CSS ou injetada via JS dependendo da equipe -->
+                </button>
+            </div>
+        </main>
+
+        <main id="screen-waiting" class="hidden">
+            <img src="assets/Gemini_Generated_Image_1z98hl1z98hl1z98-removebg-preview.png" alt="Luvas de Boxe" class="gloves-gif">
+            <p class="instruction">AGUARDANDO A EQUIPE INIMIGA!</p>
+            <div class="waiting-card">
+                <span>Assim que a outra equipe confirmar o jogo se iniciará.</span>
+            </div>
+        </main>
+        
+        <main id="screen-calculator" class="hidden">
+            <div class="screen-action-bar screen-action-bar-left">
+                <button class="btn btn-red btn-giveup" id="btn-giveup">
+                    <i class="fa-solid fa-hand-paper icon"></i>
+                    <span class="btn-title">DESISTIR</span>
+                </button>
+            </div>
+            <h1 class="calc-title">CALCULE RÁPIDO!</h1>
+            
+            <div class="machine-status">
+                <div id="question-text" class="question-text">RESOLVA A EQUAÇÃO</div>
+                <div id="time-remaining" class="timer">00</div>
+            </div>
+            <div id="machine-feedback" class="machine-feedback"></div>
+            
+            <div class="calculator-body">
+                <div class="calculator-screen">
+                    <span class="display-value" id="calc-display">0</span>
+                </div>
+
+                <div class="calculator-keyboard">
+                    <button class="calc-btn num-btn calc-img-btn" data-number="7"></button>
+                    <button class="calc-btn num-btn calc-img-btn" data-number="8"></button>
+                    <button class="calc-btn num-btn calc-img-btn" data-number="9"></button>
+                    <button class="calc-btn btn-text" id="btn-clear">APAGAR</button>
+
+                    <button class="calc-btn num-btn calc-img-btn" data-number="4"></button>
+                    <button class="calc-btn num-btn calc-img-btn" data-number="5"></button>
+                    <button class="calc-btn num-btn calc-img-btn" data-number="6"></button>
+                    <div class="empty-cell"></div>
+
+                    <button class="calc-btn num-btn calc-img-btn" data-number="1"></button>
+                    <button class="calc-btn num-btn calc-img-btn" data-number="2"></button>
+                    <button class="calc-btn num-btn calc-img-btn" data-number="3"></button>
+                    <button class="calc-btn btn-equals calc-img-btn" id="btn-equals"></button>
+
+                    <div class="empty-cell"></div>
+                    <button class="calc-btn num-btn calc-img-btn" data-number="0"></button>
+                    <div class="empty-cell"></div>
+                    <div class="empty-cell"></div>
+                </div>
+            </div>
+        </main>
+
+        <main id="screen-result" class="hidden">
+            <h1 class="result-title text-win" id="result-message">VOCÊ VENCEU, PARABÉNS!</h1>
+
+            <div class="result-card">
+                <h2 class="result-subtitle">PLACAR FINAL</h2>
+                
+                <div class="final-scoreboard">
+                    <div class="score-team">
+                        <span class="team-label">EQUIPE 1</span>
+                        <span class="team-total" id="final-points-1">00</span>
+                    </div>
+                    
+                    <div class="score-vs">X</div>
+                    
+                    <div class="score-team">
+                        <span class="team-label">EQUIPE 2</span>
+                        <span class="team-total" id="final-points-2">00</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <img src="assets/logo.png" alt="Logo" class="logo-bottom-right">
+    </div>
+    <script>
+
+const params = new URLSearchParams(window.location.search);
+let numeroJogador = params.get("player") || "";
+
+if (!numeroJogador) {
+    const pathname = window.location.pathname.toLowerCase();
+    if (pathname.endsWith("/player1")) {
+        numeroJogador = "1";
+    } else if (pathname.endsWith("/player2")) {
+        numeroJogador = "2";
+    }
+}
+
+if (!numeroJogador) {
+    numeroJogador = "1";
+}
+
+document.getElementById("team-name").textContent = `• EQUIPE ${numeroJogador}`;
+
+// Injeta as imagens e a cor da calculadora baseada na equipe
+const soloBtn = document.getElementById('btn-solo');
+const versusBtn = document.getElementById('btn-versus');
+const calculatorBody = document.querySelector('.calculator-body'); // Seleciona o corpo da calculadora
+
+if (numeroJogador === "1") {
+    soloBtn.style.backgroundImage = "url('assets/vsRoboAzul.png')";
+    versusBtn.style.backgroundImage = "url('assets/vsTimeVermelho.png')";
+    
+    // Aplica cor azul
+    calculatorBody.classList.add('team-1');
+    calculatorBody.classList.remove('team-2');
+} else {
+    soloBtn.style.backgroundImage = "url('assets/vsRoboVermelho.png')";
+    versusBtn.style.backgroundImage = "url('assets/vsTimeAzul.png')";
+    
+    // Aplica cor vermelha
+    calculatorBody.classList.add('team-2');
+    calculatorBody.classList.remove('team-1');
+}
+
+</script>
+
+    <script src="pscript.js"></script>
+</body>
+</html>
