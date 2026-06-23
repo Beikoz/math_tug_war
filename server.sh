@@ -23,7 +23,7 @@ for pid in $(pgrep -f "python3 http_server.py" || true); do
     kill "$pid" 2>/dev/null || true
   fi
 done
-
+z
 echo ""
 echo "===================================="
 echo "Servidor iniciado"
