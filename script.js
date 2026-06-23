@@ -67,6 +67,7 @@ socket.onmessage = (event) => {
 let player1TimeoutActive = false;
 let player2TimeoutActive = false;
 let jogoIniciado = false;
+let esperaOutraEquipeTimer = null;
 
 // Loop para verificar se os jogadores estão prontos
 setInterval(verificarJogadores, 500);
@@ -83,23 +84,33 @@ function verificarJogadores(){
         document.getElementById("player2").textContent = "JOGADOR 2 - PRONTO";
     }
 
+    if(jogador1Pronto !== jogador2Pronto && !jogoIniciado && !esperaOutraEquipeTimer){
+        esperaOutraEquipeTimer = setTimeout(() => {
+            if(!(estado.player1Ready && estado.player2Ready)){
+                location.reload();
+            }
+        },10000);
+    }
+
     if(
         jogador1Pronto &&
         jogador2Pronto &&
         !jogoIniciado
     ){
+        clearTimeout(esperaOutraEquipeTimer);
+        esperaOutraEquipeTimer = null;
         iniciarFluxoJogo();
     }
 }
 
 function iniciarFluxoJogo(){
     jogoIniciado = true;
-
     document.getElementById("player1").textContent = "INICIANDO PARTIDA...";
     document.getElementById("player2").textContent = "INICIANDO PARTIDA...";
 
     setTimeout(() => {
         document.getElementById("tela-espera").classList.add("hidden");
+        document.body.classList.add("partida-iniciada");
         document.getElementById("tela-tutorial").classList.remove("hidden");
 
         setTimeout(() => {
@@ -173,7 +184,13 @@ function atualizarDisplayTimer() {
     // Atualiza o elemento HTML
     const timerElement = document.getElementById("game-timer");
     if (timerElement) {
-        timerElement.textContent = `${minutosStr}:${segundosStr}`;
+        timerElement.innerHTML = `🕒 <span>${minutosStr}:${segundosStr}</span>`;
+
+        if(timeLeft <= 30){
+            timerElement.classList.add("ending");
+        }else{
+            timerElement.classList.remove("ending");
+        }
     }
 }
 
@@ -202,6 +219,8 @@ const score2 = document.getElementById("score2");
 let ropePosition = 0;
 let pontosJogador1 = 0;
 let pontosJogador2 = 0;
+let errosJogador1 = 0;
+let errosJogador2 = 0;
 const DIFERENCA_VITORIA = 5;
 let respostaCorreta1 = 0;
 let respostaCorreta2 = 0;
@@ -237,24 +256,24 @@ function novaQuestaoJogador2() {
 }
 
 function gerarConta(dificuldade = 'dificil') {
-    // Sempre gera contas compostas (modo difícil)
-    const op1 = ['+', '-'][Math.floor(Math.random() * 2)];
-    const op2 = ['+', '-'][Math.floor(Math.random() * 2)];
+while(true){
+const op1=['+','-'][Math.floor(Math.random()*2)];
+const op2=['+','-'][Math.floor(Math.random()*2)];
+const n1=Math.floor(Math.random()*30)+10;
+const n2=Math.floor(Math.random()*20)+5;
+const n3=Math.floor(Math.random()*10)+1;
 
-    const n1 = Math.floor(Math.random() * 30) + 10;
-    const n2 = Math.floor(Math.random() * 20) + 5;
-    const n3 = Math.floor(Math.random() * 10) + 1;
+let res=op1==='+'?n1+n2:n1-n2;
+res=op2==='+'?res+n3:res-n3;
 
-    let res = op1 === '+' ? n1 + n2 : n1 - n2;
-    res = op2 === '+' ? res + n3 : res - n3;
+if(res<=0) continue;
 
-    return {
-        texto: `${n1} ${op1} ${n2} ${op2} ${n3}`,
-        resposta: res,
-        html: `<div class="conta-horizontal">
-                ${n1} ${op1} ${n2} ${op2} ${n3}
-               </div>`
-    };
+return {
+texto:`${n1} ${op1} ${n2} ${op2} ${n3}`,
+resposta:res,
+html:`<div class="conta-horizontal">${n1} ${op1} ${n2} ${op2} ${n3}</div>`
+};
+}
 }
 
 // ============================================
@@ -299,6 +318,7 @@ function responderJogador1(resposta) {
         ropePosition -= 150;
         atualizarCorda();
     } else {
+        errosJogador1++;
         resposta1.textContent = `${resposta} ✖`;
         resposta1.className = "resultado errado";
     }
@@ -317,6 +337,7 @@ function responderJogador2(resposta) {
         ropePosition += 150;
         atualizarCorda();
     } else {
+        errosJogador2++;
         resposta2.textContent = `${resposta} ✖`;
         resposta2.className = "resultado errado";
     }
@@ -331,9 +352,12 @@ function iniciarJogo() {
     ropePosition = 0;
     pontosJogador1 = 0;
     pontosJogador2 = 0;
+    errosJogador1 = 0;
+    errosJogador2 = 0;
 
     score1.textContent = "JOGADOR 1 - 0";
     score2.textContent = "JOGADOR 2 - 0";
+    document.body.classList.remove("partida-iniciada");
     rope.style.transform = "translate(-50%, -50%)";
 
     resposta1.textContent = "";
@@ -397,14 +421,18 @@ function mostrarVitoria(vencedor){
         document.getElementById("titulo-vitoria").textContent = `VITÓRIA DA EQUIPE ${vencedor}`;
     }
     
-    document.getElementById("final1").textContent = `${pontosJogador1} PONTOS`;
-    document.getElementById("final2").textContent = `${pontosJogador2} PONTOS`;
+    document.getElementById("final1").textContent = `${pontosJogador1} ACERTOS`;
+    document.getElementById("final2").textContent = `${pontosJogador2} ACERTOS`;
+    document.getElementById("erros1").textContent = `${errosJogador1} ERROS`;
+    document.getElementById("erros2").textContent = `${errosJogador2} ERROS`;
 
     // Sincroniza o fim de jogo com os controles
     socket.send(JSON.stringify({
         vencedor: vencedor,
         placar1: pontosJogador1,
         placar2: pontosJogador2,
+        erros1: errosJogador1,
+        erros2: errosJogador2,
         player1Timeout: false,
         player2Timeout: false,
         desistencia: 0

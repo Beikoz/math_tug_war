@@ -93,7 +93,7 @@ body{
 
 .player{
     width:415px;
-    height:140px;
+    height:200px;
     background:#2971ff;
     border-radius:10px;
     border:2px solid #ffe26c;
@@ -110,7 +110,7 @@ body{
 
 .player2{
     width:415px;
-    height:140px;
+    height:200px;
     background:#f42626;
     border-radius:10px;
     border:2px solid #ffe26c;
@@ -376,7 +376,7 @@ body::after{
 
 .popup-card{
     width:1100px;
-    height:650px;
+    height:750px;
     background: linear-gradient(blue,red);
     background-size:cover;
     border:8px solid #000;
@@ -424,4 +424,23 @@ body::after{
 
 .hidden{
     display:none !important;
+}
+
+body.partida-iniciada{background-image:url('assets/fundo_padrao.png');}
+
+
+.game-timer{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.game-timer.ending{
+    animation:pulseTimer .8s infinite;
+}
+
+@keyframes pulseTimer{
+    0%{transform:translateX(-50%) scale(1);}
+    50%{transform:translateX(-50%) scale(1.08);}
+    100%{transform:translateX(-50%) scale(1);}
 }

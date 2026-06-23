@@ -41,11 +41,17 @@ socket.onmessage = (event) => {
     estado = JSON.parse(event.data);
 
     // Verifica se há vencedor (fim de jogo no modo PvP)
-    if (estado.vencedor && estado.vencedor !== 0) {
-        const souVencedor = Number(playerNumber) === Number(estado.vencedor);
+    if ((estado.vencedor && estado.vencedor !== 0) || (estado.desistencia && estado.desistencia !== 0)) {
+        document.getElementById('screen-calculator')?.classList.add('hidden');
+        document.getElementById('screen-waiting')?.classList.add('hidden');
+
+        const vencedor=estado.vencedor || (estado.desistencia===1?2:1);
+        const souVencedor=Number(playerNumber)===Number(vencedor);
+
         if (typeof window.finalizarPartida === 'function') {
-            window.finalizarPartida(souVencedor, estado.placar1, estado.placar2);
+            window.finalizarPartida(souVencedor, estado.placar1, estado.placar2, estado.erros1 || 0, estado.erros2 || 0);
         }
+        return;
     }
 
     if (typeof window.handlePvPServerState === 'function') {
@@ -81,6 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultMessage = document.getElementById('result-message');
     const finalPoints1 = document.getElementById('final-points-1');
     const finalPoints2 = document.getElementById('final-points-2');
+    const finalErrors1 = document.getElementById('final-errors-1');
+    const finalErrors2 = document.getElementById('final-errors-2');
 
     // Calculadora
     const display = document.getElementById('calc-display');
@@ -488,7 +496,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function finalizarPartida(
         isVitoria,
         pontosEquipe1,
-        pontosEquipe2
+        pontosEquipe2,
+        errosEquipe1=0,
+        errosEquipe2=0
     ){
         // Oculta a calculadora
         screenCalculator.classList.add('hidden');
@@ -504,6 +514,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         finalPoints1.textContent = pontosEquipe1.toString().padStart(2,'0');
         finalPoints2.textContent = pontosEquipe2.toString().padStart(2,'0');
+        finalErrors1.textContent = `${errosEquipe1} ERROS`;
+        finalErrors2.textContent = `${errosEquipe2} ERROS`;
 
         screenResult.classList.remove('hidden');
 

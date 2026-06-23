@@ -667,3 +667,19 @@ main {
 .calc-img-btn[data-number="9"]:active {
     background-image: url('assets/calc/numeros\ calculadora/nuemro9_apertado.png');
 }
+
+.btn-giveup-asset{
+background:url('assets/botao_cassa.png') center/contain no-repeat;
+width:320px;
+height:190px;
+border:none;
+cursor:pointer;
+padding:0;
+}
+.team-errors{
+display: block;
+color: #ffffff;
+font-size: 2.5rem;
+font-family: 'Eraser';
+text-shadow: 4px 4px 0px #1a1a1a;
+}
