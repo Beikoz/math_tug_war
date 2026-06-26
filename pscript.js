@@ -433,7 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (acertou) {
                 playerMachineScore++;
-                feedbackText.textContent = `VOCÊ ACERTOU! (${playerMachineScore}/${MACHINE_MODE_WIN_SCORE})`;
+                feedbackText.textContent = `(${playerMachineScore}/${MACHINE_MODE_WIN_SCORE})`;
                 
                 // Verifica se o jogador venceu
                 if (playerMachineScore >= MACHINE_MODE_WIN_SCORE) {
@@ -445,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
             } else {
-                feedbackText.textContent = `ERRADO! A resposta era ${currentMachineAnswer}`;
+                feedbackText.textContent = `${currentMachineAnswer}`;
             }
             
             currentInput = "";
