@@ -19,8 +19,7 @@ body{
     overflow:hidden;
     background: url('assets/capa.png');
     background-size:cover;
-    background-position:center;
-    font-family:'Gagalin';
+    background-position:center; font-family:'Gagalin';
     position:relative;
 }
 /* TÍTULO */
