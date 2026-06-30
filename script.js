@@ -210,6 +210,7 @@ const equacao2 = document.getElementById("equacao2");
 const resposta1 = document.getElementById("resposta1");
 const resposta2 = document.getElementById("resposta2");
 const rope = document.getElementById("rope");
+const ropeWrapper = document.getElementById("ropeWrapper");
 const score1 = document.getElementById("score1");
 const score2 = document.getElementById("score2");
 
@@ -257,21 +258,21 @@ function novaQuestaoJogador2() {
 
 function gerarConta(dificuldade = 'dificil') {
 while(true){
-const op1=['+','-'][Math.floor(Math.random()*2)];
-const op2=['+','-'][Math.floor(Math.random()*2)];
-const n1=Math.floor(Math.random()*30)+10;
-const n2=Math.floor(Math.random()*20)+5;
-const n3=Math.floor(Math.random()*10)+1;
+const op = ['+','-'][Math.floor(Math.random()*2)];
 
-let res=op1==='+'?n1+n2:n1-n2;
-res=op2==='+'?res+n3:res-n3;
+const n1 = Math.floor(Math.random()*30) + 10;
+const n2 = Math.floor(Math.random()*20) + 5;
 
-if(res<=0) continue;
+const res = op === '+'
+    ? n1 + n2
+    : n1 - n2;
+
+if (res <= 0) continue;
 
 return {
-texto:`${n1} ${op1} ${n2} ${op2} ${n3}`,
-resposta:res,
-html:`<div class="conta-horizontal">${n1} ${op1} ${n2} ${op2} ${n3}</div>`
+    texto: `${n1} ${op} ${n2}`,
+    resposta: res,
+    html: `<div class="conta-horizontal">${n1} ${op} ${n2}</div>`
 };
 }
 }
@@ -281,6 +282,9 @@ html:`<div class="conta-horizontal">${n1} ${op1} ${n2} ${op2} ${n3}</div>`
 // ============================================
 function atualizarCorda() {
     rope.style.transform = `translate(calc(-50% + ${ropePosition}px), -50%)`;
+    rope.classList.remove('puxando');
+    void rope.offsetWidth; // força o navegador a "resetar" a animação
+    rope.classList.add('puxando');
     verificarVitoria();
 }
 
@@ -315,7 +319,7 @@ function responderJogador1(resposta) {
         score1.textContent = `JOGADOR 1 - ${pontosJogador1}`;
         resposta1.textContent = respostaCorreta1;
         resposta1.className = "resultado certo";
-        ropePosition -= 150;
+        ropePosition -= 80;
         atualizarCorda();
     } else {
         errosJogador1++;
@@ -334,7 +338,7 @@ function responderJogador2(resposta) {
         score2.textContent = `JOGADOR 2 - ${pontosJogador2}`;
         resposta2.textContent = respostaCorreta2;
         resposta2.className = "resultado certo";
-        ropePosition += 150;
+        ropePosition += 80;
         atualizarCorda();
     } else {
         errosJogador2++;
@@ -349,6 +353,7 @@ function responderJogador2(resposta) {
 
 function iniciarJogo() {
     console.log("Iniciando jogo...");
+    
     ropePosition = 0;
     pontosJogador1 = 0;
     pontosJogador2 = 0;

@@ -107,11 +107,11 @@ Sem frameworks.
 │
 ├── assets/
 │   ├── ampulheta.gif
-│   ├── blackboard.png
-│   ├── rope.png
-│   ├── rope-background.png
-│   ├── tug.png
-│   ├── logo.png
+│   ├── blackboard.webp
+│   ├── rope.webp
+│   ├── rope-background.webp
+│   ├── tug.webp
+│   ├── logo.webp
 │   └── EraserRegular.ttf
 │
 ├── main.html

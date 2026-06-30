@@ -39,13 +39,13 @@ body::after{
 }
 
 body.player1-bg {
-    background-image: url("assets/fundo.png");
+    background-image: url("assets/fundo.webp");
     background-size: cover;
     background-position: center;
 }
 
 body.player2-bg {
-    background-image: url("assets/vfundo.png");
+    background-image: url("assets/vfundo.webp");
     background-size: cover;
     background-position: center;
 }
@@ -183,7 +183,7 @@ main {
 .btn-back-png {
     width: 900px;
     height: 150px;
-    background: url("assets/voltar.png") no-repeat center;
+    background: url("assets/voltar.webp") no-repeat center;
     background-size: contain;
     border: none;
     padding: 0;
@@ -550,97 +550,97 @@ main {
 
 /* Botão de enviar (=) */
 #btn-equals.calc-img-btn {
-    background-image: url('assets/calc/numeros\ calculadora/enviar.png');
+    background-image: url('assets/calc/numeros\ calculadora/enviar.webp');
 }
 
 #btn-equals.calc-img-btn:active {
-    background-image: url('assets/calc/numeros\ calculadora/enviar_apertado.png');
+    background-image: url('assets/calc/numeros\ calculadora/enviar_apertado.webp');
 }
 
 /* Botões numéricos - Estados normais */
 .calc-img-btn[data-number="0"] {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro0.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro0.webp');
 }
 
 .calc-img-btn[data-number="1"] {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro1.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro1.webp');
 }
 
 .calc-img-btn[data-number="2"] {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro2.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro2.webp');
 }
 
 .calc-img-btn[data-number="3"] {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro3.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro3.webp');
 }
 
 .calc-img-btn[data-number="4"] {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro4.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro4.webp');
 }
 
 .calc-img-btn[data-number="5"] {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro5.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro5.webp');
 }
 
 .calc-img-btn[data-number="6"] {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro6.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro6.webp');
 }
 
 .calc-img-btn[data-number="7"] {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro7.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro7.webp');
 }
 
 .calc-img-btn[data-number="8"] {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro8.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro8.webp');
 }
 
 .calc-img-btn[data-number="9"] {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro9.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro9.webp');
 }
 
 /* Botões numéricos - Estados pressionados */
 .calc-img-btn[data-number="0"]:active {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro0_apertado.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro0_apertado.webp');
 }
 
 .calc-img-btn[data-number="1"]:active {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro1_apertado.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro1_apertado.webp');
 }
 
 .calc-img-btn[data-number="2"]:active {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro2_apertado.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro2_apertado.webp');
 }
 
 .calc-img-btn[data-number="3"]:active {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro3_apertado.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro3_apertado.webp');
 }
 
 .calc-img-btn[data-number="4"]:active {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro4_apertado.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro4_apertado.webp');
 }
 
 .calc-img-btn[data-number="5"]:active {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro5_apertado.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro5_apertado.webp');
 }
 
 .calc-img-btn[data-number="6"]:active {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro6_apertado.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro6_apertado.webp');
 }
 
 .calc-img-btn[data-number="7"]:active {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro7_apertado.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro7_apertado.webp');
 }
 
 .calc-img-btn[data-number="8"]:active {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro8_apertado.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro8_apertado.webp');
 }
 
 .calc-img-btn[data-number="9"]:active {
-    background-image: url('assets/calc/numeros\ calculadora/nuemro9_apertado.png');
+    background-image: url('assets/calc/numeros\ calculadora/nuemro9_apertado.webp');
 }
 
 .btn-giveup-asset{
-background:url('assets/botao_cassa.png') center/contain no-repeat;
+background:url('assets/botao_cassa.webp') center/contain no-repeat;
 width:320px;
 height:190px;
 border:none;
